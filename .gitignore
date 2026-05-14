@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+*.so
+
+# C++/CUDA
+*.o
+*.a
+*.out
+*.ptx
+*.cubin
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake-build-*/
+
+# VS Code
+.vscode/
+
+# Misc
+.DS_Store
+*.swp

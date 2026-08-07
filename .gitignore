@@ -1,3 +1,5 @@
+# Denylist: files are tracked by default, and only the patterns below are excluded.
+
 # Python
 __pycache__/
 *.py[cod]
@@ -6,6 +8,12 @@ dist/
 build/
 .venv/
 *.so
+
+# Notebooks (examples/ ships .ipynb files)
+.ipynb_checkpoints/
+
+# Windows-to-WSL copy residue
+*:Zone.Identifier
 
 # C++/CUDA
 *.o

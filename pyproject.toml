@@ -4,14 +4,14 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mcpinn"
-version = "0.0.1"
+version = "0.0.2"
 description = "Physics-informed graph neural networks with second-order optimization"
+readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE"]
 
-# PLACEHOLDER, replace both fields before building.
-authors = [{ name = "Your Name", email = "you@example.com" }]
+authors = [{ name = "Kiarash Ara", email = "kiarash.ara@gmail.com" }]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/mcpinn"]

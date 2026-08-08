@@ -18,8 +18,37 @@ says so and references the old one; history is never silently deleted.
 - D-010 — Tier 1.5 employability track: FMI export, assimilation API, twin example
 - D-011 — "Digital twin" is claimed on a four-stage ladder, not asserted
 - D-012 — Three-layer knowledge workflow: per-paper chats, synthesizer project, Claude Code
+- D-013 — Packaging: hatchling backend, Python 3.10 floor, PyPI name reserved early
 
 ---
+
+## D-013 — Packaging: hatchling backend, Python 3.10 floor, PyPI name reserved early
+2026-08-08
+
+- **Decision**: package with hatchling under the existing src layout; declare
+  `requires-python = ">=3.10"`; reserve the name `mcpinn` on PyPI immediately with an
+  inert `0.0.1` placeholder that ships metadata and a version string, declares no
+  dependencies, and contains no library code.
+- **Alternatives rejected**: (a) setuptools as the build backend, (b) flit-core,
+  (c) waiting to claim the PyPI name until the library exists, (d) declaring the
+  runtime dependency set now.
+- **Why**: hatchling is PEP 621 native, so the metadata needs no backend-specific
+  translation, and it maps a src layout without a plugin. setuptools works but wants a
+  `packages.find` table to locate `src/`. flit-core is disqualified outright because it
+  derives the package summary from the module docstring, which collides with keeping
+  `__init__.py` to a single version line. The 3.10 floor sits low enough to stay
+  compatible with whatever PyTorch requires later, and it is a floor rather than a pin
+  so it does not constrain the development interpreter. The name is claimed now because
+  PyPI allocates names first come and the repository is already public, so losing the
+  name later would cost more than an inert placeholder does. No dependencies are
+  declared because the message-passing choice between PyTorch Geometric and hand-rolled
+  scatter primitives is still open, and declaring a dependency set now would settle that
+  choice by the back door.
+- **Assumptions**: the eventual dependency set supports Python 3.10; nobody installs the
+  placeholder, so `0.0.1` carries no compatibility obligation to anyone.
+- **Open questions**: whether the version stays duplicated in `pyproject.toml` and
+  `__init__.py` or moves to a single dynamic source; the message-passing dependency
+  decision remains open and may raise the effective Python floor when it is settled.
 
 ## D-012 — Three-layer knowledge workflow: per-paper chats, synthesizer project, Claude Code
 2026-06-06

@@ -100,7 +100,15 @@ or correctness in Tier 1, take the clarity.
   for convenience, but nothing in Tier 1 may *depend* on a GPU: a reviewer must be
   able to run every example on a laptop CPU in seconds.
 - Record version assumptions here as they are pinned, so a session does not
-  rediscover them.
+  rediscover them. Pinned so far:
+  - `requires-python = ">=3.10"`, declared in `pyproject.toml`. A floor, not a pin, so
+    it does not constrain the interpreter used for development.
+  - Development interpreter: Python 3.14.4, in a venv at `.venv/` in the repo root.
+    PyTorch wheels may lag a Python release this new; if they do, recreate the venv
+    against an older interpreter. Nothing in the packaging depends on which is used.
+  - Build backend: hatchling, src layout. See D-013.
+  - No runtime dependencies are declared yet, pending the PyTorch Geometric versus
+    hand-rolled scatter decision.
 
 ## Repo layout
 
